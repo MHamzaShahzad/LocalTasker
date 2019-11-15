@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "781608507767",
+    "firebase_url": "https://localtasker-b6fc5.firebaseio.com",
+    "project_id": "localtasker-b6fc5",
+    "storage_bucket": "localtasker-b6fc5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781608507767:android:e0bafa668fb6cd81326972",
+        "android_client_info": {
+          "package_name": "com.example.localtasker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781608507767-dcj3hc423vmckrs7up6an3ea2te9ch99.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.localtasker",
+            "certificate_hash": "add77befe713b270d313801d124d15891275d8d2"
+          }
+        },
+        {
+          "client_id": "781608507767-3avldsduf0jigue43ogcd97apm4aptvv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1Nue6DBAg1RWuLPn53b7W15yynMBcvZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "781608507767-3avldsduf0jigue43ogcd97apm4aptvv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
