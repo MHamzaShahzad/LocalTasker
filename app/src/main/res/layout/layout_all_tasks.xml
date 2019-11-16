@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="7dp"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:background="@drawable/stylebottomsheet"
+            >
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userProfilePicture"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/taskimage" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,7 +41,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Task Title"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"/>
 
                 <TextView
                     android:id="@+id/taskLocation"
@@ -47,13 +54,16 @@
                     android:drawableLeft="@drawable/ic_location_on_black_24dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Task Location" />
+                    android:layout_marginTop="7dp"
+                    android:text="Task Location"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="3">
+                    android:weightSum="3"
+                    android:layout_marginTop="7dp">
 
                     <TextView
                         android:id="@+id/userRating"

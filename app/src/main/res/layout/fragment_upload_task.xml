@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorFragmentBackground"
+    android:background="#FFFFFF"
     android:clickable="true"
     android:padding="10dp"
     tools:context=".user.FragmentUploadTask">
@@ -25,11 +25,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginBottom="5dp"
                     android:text="Task Details"
                     android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -40,7 +41,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="5dp">
+                        android:padding="5dp"
+                        android:background="#FFFFFF">
 
                         <EditText
                             android:id="@+id/taskTitle"
@@ -50,7 +52,8 @@
                             android:background="@drawable/stylebottomsheet"
                             android:hint="Task Title..."
                             android:inputType="text"
-                            android:padding="5dp" />
+                            android:padding="5dp"
+                            />
 
                         <EditText
                             android:id="@+id/taskDescription"
@@ -109,7 +112,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="5dp">
+                        android:padding="5dp"
+                        android:background="#FFFFFF"
+                        >
 
                         <TextView
                             android:layout_width="match_parent"
@@ -122,8 +127,10 @@
                             android:id="@+id/selectDueDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:padding="5dp"
                             android:background="@drawable/stylebottomsheet"
-                            android:padding="5dp" />
+
+                            />
 
                     </LinearLayout>
 
@@ -146,7 +153,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="5dp">
+                        android:padding="5dp"
+                        android:background="#FFFFFF">
 
                         <TextView
                             android:layout_width="match_parent"

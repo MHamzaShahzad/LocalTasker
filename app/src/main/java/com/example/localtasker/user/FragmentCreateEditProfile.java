@@ -23,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -81,7 +82,7 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
     private ImageButton btn_update_profile;
     private RatingBar user_profile_rating;
     private Button btn_submit_profile;
-    private TextView user_profile_name, user_rating_counts, user_email, user_mobile, user_address, user_category, user_type, user_about;
+    private EditText user_profile_name, user_rating_counts, user_email, user_mobile, user_address, user_category, user_type, user_about;
     private RadioGroup group_user_type;
     private RadioButton btn_buyer, btn_seller, btn_buyer_seller;
 

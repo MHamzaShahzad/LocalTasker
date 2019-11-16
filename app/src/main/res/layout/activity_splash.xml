@@ -3,7 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
-
+    tools:context=".SplashActivity"
+    android:background="@drawable/background">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:text="Local Tasker"
+    android:textSize="50sp"
+    android:textColor="@color/colorAccent"
+    android:textStyle="bold"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"/>
 
 </RelativeLayout>

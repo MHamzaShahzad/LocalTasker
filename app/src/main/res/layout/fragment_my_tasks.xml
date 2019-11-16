@@ -16,11 +16,11 @@
             android:id="@+id/tabMyTasks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabBackground="@android:color/darker_gray"
-            app:tabIndicatorColor="#f00"
+            app:tabBackground="@android:color/holo_red_dark"
+            app:tabIndicatorColor="#BFFFEB3B"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="#f00"
-            app:tabTextColor="#000" />
+            app:tabSelectedTextColor="#BFFFEB3B"
+            app:tabTextColor="#BFFFEB3B" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerMyTasks"

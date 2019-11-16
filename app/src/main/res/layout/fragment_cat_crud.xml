@@ -23,7 +23,7 @@
                 android:layout_marginTop="20dp"
                 android:contentDescription="@string/nav_header_desc"
                 android:paddingTop="@dimen/nav_header_vertical_spacing"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/categoryimage" />
 
             <ImageButton
                 android:id="@+id/btnUpdateCatImage"
@@ -35,8 +35,8 @@
                 android:layout_marginTop="-37dp"
                 android:layout_toEndOf="@id/catImageView"
                 android:layout_toRightOf="@id/catImageView"
-                android:background="#019EB3"
                 android:padding="3dp"
+                android:backgroundTint="@color/fui_transparent"
                 android:src="@drawable/ic_update_black_24dp" />
 
         </RelativeLayout>
