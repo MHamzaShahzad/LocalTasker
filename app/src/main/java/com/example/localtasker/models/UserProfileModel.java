@@ -6,6 +6,9 @@ import java.util.List;
 
 public class UserProfileModel implements Serializable {
 
+    public static final String STRING_RATING_REF = "userRating";
+    public static final String STRING_RATING_COUNTS_REF = "ratingCounts";
+
     String userName, userImageUrl, userEmailAddress, userMobileNumber, userAddress, userAddressLatLng, userType, userServiceCatId, about;
     int ratingCounts;
     float userRating;
@@ -25,6 +28,10 @@ public class UserProfileModel implements Serializable {
         this.about = about;
         this.userRating = userRating;
         this.ratingCounts = ratingCounts;
+    }
+
+    public String getAbout() {
+        return about;
     }
 
     public String getUserName() {

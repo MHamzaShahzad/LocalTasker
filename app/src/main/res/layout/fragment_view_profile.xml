@@ -15,9 +15,8 @@
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:scaleType="centerCrop"
             android:background="#ebca0707"
-            />
+            android:scaleType="centerCrop" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_profile_photo"
@@ -53,14 +52,13 @@
 
             <RatingBar
                 android:id="@+id/user_profile_rating"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_profile_name"
                 android:layout_centerHorizontal="true"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                android:theme="@style/RatingBar"
-                />
+                android:isIndicator="true"
+                android:theme="@style/RatingBar" />
 
             <TextView
                 android:id="@+id/user_rating_counts"
@@ -68,8 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_profile_rating"
                 android:layout_centerHorizontal="true"
-                android:text="()"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:text="()" />
 
         </RelativeLayout>
 

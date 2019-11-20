@@ -3,19 +3,23 @@ package com.example.localtasker.models;
 import java.io.Serializable;
 
 public class TaskModel implements Serializable {
+    public static final String STRING_TASK_ID_REF = "taskId";
+    public static final String STRING_TASK_ASSIGNED_TO_REF = "taskAssignedTo";
+    public static final String STRING_TASK_STATUS_REF = "taskStatus";
+    public static final String STRING_TASK_REVIEW_BY_SELLER_MESSAGE_REF = "taskReviewBySeller";
 
-    private String taskId, taskStatus, taskUploadedBy, taskAssignedTo, taskReviewOnCompletion, taskCategory, taskCatName, taskUploadedOn, taskTitle, taskDescription, taskLocation, taskLatLng, taskDueDate, taskBudget;
+    private String taskId, taskStatus, taskUploadedBy, taskAssignedTo, taskReviewBySeller, taskCategory, taskCatName, taskUploadedOn, taskTitle, taskDescription, taskLocation, taskLatLng, taskDueDate, taskBudget;
 
 
     public TaskModel() {
     }
 
-    public TaskModel(String taskId, String taskStatus, String taskUploadedBy, String taskAssignedTo, String taskReviewOnCompletion, String taskCategory, String taskCatName, String taskUploadedOn, String taskTitle, String taskDescription, String taskLocation, String taskLatLng, String taskDueDate, String taskBudget) {
+    public TaskModel(String taskId, String taskStatus, String taskUploadedBy, String taskAssignedTo, String taskReviewBySeller, String taskCategory, String taskCatName, String taskUploadedOn, String taskTitle, String taskDescription, String taskLocation, String taskLatLng, String taskDueDate, String taskBudget) {
         this.taskId = taskId;
         this.taskStatus = taskStatus;
         this.taskUploadedBy = taskUploadedBy;
         this.taskAssignedTo = taskAssignedTo;
-        this.taskReviewOnCompletion = taskReviewOnCompletion;
+        this.taskReviewBySeller = taskReviewBySeller;
         this.taskCategory = taskCategory;
         this.taskCatName = taskCatName;
         this.taskUploadedOn = taskUploadedOn;
@@ -43,8 +47,8 @@ public class TaskModel implements Serializable {
         return taskAssignedTo;
     }
 
-    public String getTaskReviewOnCompletion() {
-        return taskReviewOnCompletion;
+    public String getTaskReviewBySeller() {
+        return taskReviewBySeller;
     }
 
     public String getTaskCategory() {
@@ -82,4 +86,5 @@ public class TaskModel implements Serializable {
     public String getTaskBudget() {
         return taskBudget;
     }
+
 }

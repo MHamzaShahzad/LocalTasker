@@ -83,8 +83,8 @@ public class FragmentMyBids extends Fragment {
         myOffersTabs.addTab(myOffersTabs.newTab().setText("Sent"), true);
         myOffersTabs.addTab(myOffersTabs.newTab().setText("Assigned"));
         myOffersTabs.addTab(myOffersTabs.newTab().setText("Completed"));
+        myOffersTabs.addTab(myOffersTabs.newTab().setText("Incomplete"));
         myOffersTabs.addTab(myOffersTabs.newTab().setText("Reviewed"));
-        myOffersTabs.addTab(myOffersTabs.newTab().setText("Cancelled"));
 
         setTabSelectedListener();
     }
@@ -120,10 +120,10 @@ public class FragmentMyBids extends Fragment {
                 getTasksWithMyBid(Constants.TASKS_STATUS_COMPLETED);
                 break;
             case 3:
-                getTasksWithMyBid(Constants.TASKS_STATUS_REVIEWED);
+                getTasksWithMyBid(Constants.TASKS_STATUS_UNCOMPLETED);
                 break;
             case 4:
-                getTasksWithMyBid(Constants.TASKS_STATUS_CANCELLED);
+                getTasksWithMyBid(Constants.TASKS_STATUS_REVIEWED);
                 break;
             default:
         }

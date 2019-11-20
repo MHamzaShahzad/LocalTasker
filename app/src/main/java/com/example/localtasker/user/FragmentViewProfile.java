@@ -87,7 +87,7 @@ public class FragmentViewProfile extends Fragment {
                 user_email.setText(userProfileModel.getUserEmailAddress());
                 user_address.setText(userProfileModel.getUserAddress());
                 user_type.setText(CommonFunctionsClass.getUserType(userProfileModel.getUserType()));
-                user_about.setText(userProfileModel.getUserAddress());
+                user_about.setText(userProfileModel.getAbout());
                 user_profile_rating.setRating(userProfileModel.getUserRating());
                 user_rating_counts.setText("(" + userProfileModel.getRatingCounts() + ")");
 

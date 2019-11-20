@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".user.FragmentTaskDescription"
-    >
+    tools:context=".user.FragmentTaskDescription">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,11 +21,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="Task Title"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"/>
+                android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -36,10 +35,10 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/stylebottomsheet">
+                    android:background="@drawable/stylebottomsheet"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profileImage"
@@ -51,22 +50,22 @@
                         android:id="@+id/textPostedBy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_toEndOf="@id/profileImage"
                         android:layout_toRightOf="@id/profileImage"
-                        android:layout_marginLeft="10dp"
-                        android:text="POSTED BY"
-                        android:layout_marginStart="10dp" />
+                        android:text="POSTED BY" />
 
                     <TextView
                         android:id="@+id/placePostedBy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textPostedBy"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_toEndOf="@id/profileImage"
                         android:layout_toRightOf="@id/profileImage"
-                        android:text="Posted by"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"/>
+                        android:text="Posted by" />
 
                     <TextView
                         android:id="@+id/placeUploadedDuration"
@@ -88,10 +87,10 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/stylebottomsheet">
+                    android:background="@drawable/stylebottomsheet"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/locationImage"
@@ -103,24 +102,24 @@
                         android:id="@+id/textLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_toEndOf="@id/locationImage"
                         android:layout_toRightOf="@id/locationImage"
-                        android:text="LOCATION"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:text="LOCATION" />
 
                     <TextView
                         android:id="@+id/placeTaskLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textLocation"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_toEndOf="@id/locationImage"
                         android:layout_toRightOf="@id/locationImage"
                         android:ellipsize="end"
                         android:lines="1"
-                        android:text="Location"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"/>
+                        android:text="Location" />
 
                     <TextView
                         android:id="@+id/viewOnMap"
@@ -142,10 +141,10 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/stylebottomsheet">
+                    android:background="@drawable/stylebottomsheet"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageDueDate"
@@ -157,22 +156,22 @@
                         android:id="@+id/textDueDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_toEndOf="@id/imageDueDate"
                         android:layout_toRightOf="@id/imageDueDate"
-                        android:text="DUE DATE"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"/>
+                        android:text="DUE DATE" />
 
                     <TextView
                         android:id="@+id/placeDueDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textDueDate"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_toEndOf="@id/imageDueDate"
                         android:layout_toRightOf="@id/imageDueDate"
-                        android:text="09 Jun 2019"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"/>
+                        android:text="09 Jun 2019" />
 
                 </RelativeLayout>
 
@@ -186,10 +185,10 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/stylebottomsheet">
+                    android:background="@drawable/stylebottomsheet"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/textDescription"
@@ -197,7 +196,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:text="TASK DESCRIPTION"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/placeTaskDescription"
@@ -205,8 +204,8 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/textDescription"
                         android:layout_centerHorizontal="true"
-                        android:textStyle="bold"
-                        android:text="There are 3 rooms, 3 Bath and 1 Kitchen to be clean" />
+                        android:text="There are 3 rooms, 3 Bath and 1 Kitchen to be clean"
+                        android:textStyle="bold" />
 
                 </RelativeLayout>
 
@@ -215,16 +214,14 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                >
+                android:layout_margin="10dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
                     android:background="@drawable/stylebottomsheet"
-                    >
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/textBudget"
@@ -232,7 +229,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:text="TASK BUDGET"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/placeBudget"
@@ -241,7 +238,7 @@
                         android:layout_below="@id/textBudget"
                         android:layout_centerHorizontal="true"
                         android:text="Rs. 350"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/btnMakeOffer"
@@ -249,9 +246,29 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/placeBudget"
                         android:layout_centerHorizontal="true"
-                        android:text="Make Offer"
                         android:layout_margin="5dp"
+                        android:text="Make Offer"
                         android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btnReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/placeBudget"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="5dp"
+                        android:text="Review"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/taskReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/placeBudget"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="5dp"
+                        android:visibility="gone"
+                        />
 
                     <LinearLayout
                         android:id="@+id/layout_edit_remove"
@@ -267,17 +284,41 @@
                             android:id="@+id/btnEditOffer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/placeBudget"
-                            android:layout_centerHorizontal="true"
                             android:text="Edit Task" />
 
                         <Button
                             android:id="@+id/btnRemoveOffer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Remove Task" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_complete_incomplete_task"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/placeBudget"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="2">
+
+                        <Button
+                            android:id="@+id/btnCompleteTask"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_below="@+id/placeBudget"
                             android:layout_centerHorizontal="true"
-                            android:text="Remove Task" />
+                            android:text="Make Complete" />
+
+                        <Button
+                            android:id="@+id/btnIncompleteTask"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/placeBudget"
+                            android:layout_centerHorizontal="true"
+                            android:text="Make Incomplete" />
 
                     </LinearLayout>
 
@@ -293,10 +334,10 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/stylebottomsheet">
+                    android:background="@drawable/stylebottomsheet"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/textOffers"

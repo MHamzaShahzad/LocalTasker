@@ -41,6 +41,7 @@ import com.example.localtasker.controllers.MyFirebaseStorage;
 import com.example.localtasker.interfaces.OnServiceSelectedI;
 import com.example.localtasker.models.TaskCat;
 import com.example.localtasker.models.UserProfileModel;
+import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -82,7 +83,8 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
     private ImageButton btn_update_profile;
     private RatingBar user_profile_rating;
     private Button btn_submit_profile;
-    private EditText user_profile_name, user_rating_counts, user_email, user_mobile, user_address, user_category, user_type, user_about;
+    private EditText user_profile_name, user_email, user_mobile, user_address, user_category, user_about;
+    private TextView user_rating_counts;
     private RadioGroup group_user_type;
     private RadioButton btn_buyer, btn_seller, btn_buyer_seller;
 
@@ -136,7 +138,6 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
         user_mobile = view.findViewById(R.id.user_mobile);
         user_address = view.findViewById(R.id.user_address);
         user_category = view.findViewById(R.id.user_category);
-        user_type = view.findViewById(R.id.user_type);
         user_about = view.findViewById(R.id.user_about);
         btn_submit_profile = view.findViewById(R.id.btn_submit_profile);
 
@@ -158,34 +159,71 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
 
     private void getProfileData() {
 
-        Bundle arguments = getArguments();
-        if (arguments != null) {
+        MyFirebaseDatabase.USERS_REFERENCE.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            userProfileModelPrevious = (UserProfileModel) arguments.getSerializable(Constants.STRING_USER_PROFILE_OBJECT);
+                if (dataSnapshot.exists() && dataSnapshot.getValue() != null) {
 
-            if (userProfileModelPrevious != null) {
+                    try {
 
-                if (userProfileModelPrevious.getUserImageUrl() != null && !userProfileModelPrevious.getUserImageUrl().equals("") && !userProfileModelPrevious.getUserImageUrl().equals("null"))
-                    Picasso.get()
-                            .load(userProfileModelPrevious.getUserImageUrl())
-                            .placeholder(R.drawable.ic_launcher_background)
-                            .error(R.drawable.ic_launcher_background)
-                            .centerInside().fit()
-                            .into(user_profile_photo);
+                        userProfileModelPrevious = dataSnapshot.getValue(UserProfileModel.class);
 
-                user_profile_name.setText(userProfileModelPrevious.getUserName());
-                user_mobile.setText(userProfileModelPrevious.getUserMobileNumber());
-                user_email.setText(userProfileModelPrevious.getUserEmailAddress());
-                user_address.setText(userProfileModelPrevious.getUserAddress());
-                user_type.setText(CommonFunctionsClass.getUserType(userProfileModelPrevious.getUserType()));
-                user_about.setText(userProfileModelPrevious.getUserAddress());
-                user_profile_rating.setRating(userProfileModelPrevious.getUserRating());
-                user_rating_counts.setText("(" + userProfileModelPrevious.getRatingCounts() + ")");
-                setUserType(userProfileModelPrevious.getUserType());
+                        if (userProfileModelPrevious != null) {
+
+                            if (userProfileModelPrevious.getUserImageUrl() != null && !userProfileModelPrevious.getUserImageUrl().equals("") && !userProfileModelPrevious.getUserImageUrl().equals("null"))
+                                Picasso.get()
+                                        .load(userProfileModelPrevious.getUserImageUrl())
+                                        .placeholder(R.drawable.ic_launcher_background)
+                                        .error(R.drawable.ic_launcher_background)
+                                        .centerInside().fit()
+                                        .into(user_profile_photo);
+
+                            user_profile_name.setText(userProfileModelPrevious.getUserName());
+                            user_mobile.setText(firebaseUser.getPhoneNumber());
+                            user_email.setText(userProfileModelPrevious.getUserEmailAddress());
+                            user_address.setText(userProfileModelPrevious.getUserAddress());
+                            user_about.setText(userProfileModelPrevious.getAbout());
+                            user_profile_rating.setRating(userProfileModelPrevious.getUserRating());
+                            user_rating_counts.setText("(" + userProfileModelPrevious.getRatingCounts() + ")");
+                            setUserType(userProfileModelPrevious.getUserType());
+
+                            MyFirebaseDatabase.TASKS_CAT.child(userProfileModelPrevious.getUserServiceCatId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists() && dataSnapshot.getValue() != null){
+                                        try {
+
+                                            TaskCat cat = dataSnapshot.getValue(TaskCat.class);
+                                            if (cat != null){
+                                                FragmentCreateEditProfile.this.onServiceSelected(cat.getCategoryId(), cat.getCategoryName());
+                                            }
+
+                                        }catch (Exception e){
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
 
             }
 
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void initSheetBehaviour() {
@@ -404,10 +442,13 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
         switch (userType) {
             case Constants.USER_PROFILE_BUYER:
                 btn_buyer.setChecked(true);
+                break;
             case Constants.USER_PROFILE_SELLER:
                 btn_seller.setChecked(true);
+                break;
             case Constants.USER_PROFILE_BUYER_SELLER:
                 btn_buyer_seller.setChecked(true);
+                break;
         }
     }
 

@@ -30,6 +30,7 @@ public class Constants {
     public static final String TASKS_STATUS_COMPLETED = "2";
     public static final String TASKS_STATUS_REVIEWED = "3";
     public static final String TASKS_STATUS_CANCELLED = "4";
+    public static final String TASKS_STATUS_UNCOMPLETED = "5";
 
     public static final String STRING_LOCATION_ADDRESS = "address";
     public static final String STRING_LOCATION_LATITUDE = "latitude";

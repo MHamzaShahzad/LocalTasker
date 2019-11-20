@@ -57,10 +57,12 @@ import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class FragmentEditTaskDetails extends Fragment implements View.OnClickListener , OnServiceSelectedI {
 
-public class FragmentUploadTask extends Fragment implements View.OnClickListener , OnServiceSelectedI {
-
-    private static final String TAG = FragmentUploadTask.class.getName();
+    private static final String TAG = FragmentEditTaskDetails.class.getName();
     private Context context;
     private View view;
 
@@ -76,12 +78,14 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
 
     private LatLng taskLocationLatLng;
     private FirebaseUser user;
-    private String currentDate;
+    private String uploadedDate;
 
     private String selectedServiceId;
     private BottomSheetDialog mBottomSheetDialog;
 
-    public FragmentUploadTask() {
+    private TaskModel taskModel;
+
+    public FragmentEditTaskDetails() {
         // Required empty public constructor
     }
 
@@ -101,8 +105,51 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
             initLayoutWidgets();
             initDatePickerDialog();
             bottomSheetDialog();
+
+            getTaskDetailsToBeEdited();
         }
         return view;
+    }
+
+    private void getTaskDetailsToBeEdited(){
+        Bundle arguments = getArguments();
+        if (arguments != null){
+
+            taskModel = (TaskModel) arguments.getSerializable(Constants.STRING_TASK_OBJECT);
+            if (taskModel != null){
+
+                selectDueDate.setText(taskModel.getTaskDueDate());
+                taskTitle.setText(taskModel.getTaskTitle());
+                taskDescription.setText(taskModel.getTaskDescription());
+                taskBudget.setText(taskModel.getTaskBudget());
+                selectTaskCategory.setText(taskModel.getTaskCatName());
+                taskLocation.setText(taskModel.getTaskLocation());
+
+                selectedServiceId = taskModel.getTaskCategory();
+                uploadedDate = taskModel.getTaskUploadedOn();
+                taskLocationLatLng = new LatLng(getTaskLatitude(taskModel.getTaskLatLng()), getTaskLongitude(taskModel.getTaskLatLng()));
+
+            }
+
+        }
+    }
+
+    private double getTaskLatitude(String latLng) {
+        if (latLng != null) {
+            if (latLng.contains("-")) {
+                return Double.parseDouble(latLng.split("-")[0]);
+            }
+        }
+        return 0.0;
+    }
+
+    private double getTaskLongitude(String latLng) {
+        if (latLng != null) {
+            if (latLng.contains("-")) {
+                return Double.parseDouble(latLng.split("-")[1]);
+            }
+        }
+        return 0.0;
     }
 
     private void initSheetBehaviour() {
@@ -208,7 +255,7 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
 
                     }
                 }
-                recyclerView.setAdapter(new AdapterForServicesList(FragmentUploadTask.this, context, list));
+                recyclerView.setAdapter(new AdapterForServicesList(FragmentEditTaskDetails.this, context, list));
             }
 
             @Override
@@ -283,8 +330,6 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
                 mDateSetListener,
                 year, month, day
         );
-        currentDate = formatter.format(cal.getTime());
-        selectDueDate.setText(currentDate);
     }
 
     private TaskModel buildTaskObject(String id) {
@@ -296,7 +341,7 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
                 "",
                 selectedServiceId,
                 selectTaskCategory.getText().toString(),
-                currentDate,
+                uploadedDate,
                 taskTitle.getText().toString().trim(),
                 taskDescription.getText().toString().trim(),
                 taskLocation.getText().toString().trim(),
@@ -328,8 +373,6 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
             e.printStackTrace();
         }
     }
-
-
 
     @Override
     public void onClick(View view) {
@@ -381,5 +424,6 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
         if (mBottomSheetDialog != null)
             mBottomSheetDialog.dismiss();
     }
+
 
 }

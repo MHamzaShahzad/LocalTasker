@@ -198,6 +198,7 @@ public class HomeDrawerActivity extends AppCompatActivity
     }
 
     private void showDialogIfAccountHaveToBeCreated() {
+
         new AlertDialog.Builder(context)
                 .setMessage("Submit your profile first!")
                 .setTitle("Profile Submission Alert")
@@ -213,6 +214,7 @@ public class HomeDrawerActivity extends AppCompatActivity
 
                     }
                 }).create().show();
+
     }
 
     @Override

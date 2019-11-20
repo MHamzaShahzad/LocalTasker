@@ -1,6 +1,5 @@
 package com.example.localtasker.user;
 
-
 import android.content.Context;
 import android.os.Bundle;
 
@@ -55,7 +54,6 @@ public class FragmentMyAllTasks extends Fragment {
         taskModelListTemp = new ArrayList<>();
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,12 +88,14 @@ public class FragmentMyAllTasks extends Fragment {
         tabMyTasks.addTab(tabMyTasks.newTab().setText("Open"), true);
         tabMyTasks.addTab(tabMyTasks.newTab().setText("Assigned"));
         tabMyTasks.addTab(tabMyTasks.newTab().setText("Completed"));
+        tabMyTasks.addTab(tabMyTasks.newTab().setText("Incomplete"));
         tabMyTasks.addTab(tabMyTasks.newTab().setText("Reviewed"));
+        tabMyTasks.addTab(tabMyTasks.newTab().setText("Cancelled"));
 
         setTabSelectedListener();
     }
 
-    private void loadTasksBasedOnTabSelected(int position){
+    private void loadTasksBasedOnTabSelected(int position) {
         switch (position) {
             case 0:
                 getMyTasks(Constants.TASKS_STATUS_OPEN);
@@ -107,13 +107,19 @@ public class FragmentMyAllTasks extends Fragment {
                 getMyTasks(Constants.TASKS_STATUS_COMPLETED);
                 break;
             case 3:
+                getMyTasks(Constants.TASKS_STATUS_UNCOMPLETED);
+                break;
+            case 4:
                 getMyTasks(Constants.TASKS_STATUS_REVIEWED);
+                break;
+            case 5:
+                getMyTasks(Constants.TASKS_STATUS_CANCELLED);
                 break;
             default:
         }
     }
 
-    private void setTabSelectedListener(){
+    private void setTabSelectedListener() {
         tabMyTasks.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
