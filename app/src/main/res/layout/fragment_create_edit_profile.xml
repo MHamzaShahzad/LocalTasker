@@ -39,6 +39,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_profile_photo"
+                android:elevation="5dp"
+                android:background="@android:color/transparent"
                 android:layout_marginStart="-45dp"
                 android:layout_marginLeft="-45dp"
                 android:layout_marginTop="-45dp"
