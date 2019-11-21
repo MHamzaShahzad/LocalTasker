@@ -182,7 +182,9 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:text="Submit"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:background="#A71515"
+                    android:textColor="#FFFFFF"/>
 
 
             </LinearLayout>

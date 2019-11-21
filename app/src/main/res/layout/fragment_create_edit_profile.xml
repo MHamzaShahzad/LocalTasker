@@ -18,8 +18,8 @@
             <ImageView
                 android:id="@+id/header_cover_image"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="#ebca0707"
+                android:layout_height="150dp"
+                android:background="@drawable/profile_background"
                 android:scaleType="centerCrop" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header_cover_image"
-                android:background="#ebca0707"
+                android:background="#A71515"
                 android:elevation="4dp"
                 android:paddingBottom="24dp">
 
@@ -204,7 +204,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:background="#ebca0707"
+                    android:background="#A71515"
                     android:text="Submit"
                     android:textColor="#BFFFEB3B" />
 
