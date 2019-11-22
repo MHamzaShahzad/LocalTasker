@@ -29,6 +29,7 @@ import com.example.localtasker.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.adapter.AdapterForServicesList;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
+import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
 import com.example.localtasker.interfaces.OnServiceSelectedI;
 import com.example.localtasker.models.TaskCat;
 import com.example.localtasker.models.TaskModel;
@@ -81,6 +82,9 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
     private String selectedServiceId;
     private BottomSheetDialog mBottomSheetDialog;
 
+    private FragmentInteractionListenerInterface mListener;
+
+
     public FragmentUploadTask() {
         // Required empty public constructor
     }
@@ -89,6 +93,8 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_UPLOAD_TASK);
         context = container.getContext();
         // Inflate the layout for this fragment
         if (view == null) {
@@ -380,6 +386,29 @@ public class FragmentUploadTask extends Fragment implements View.OnClickListener
         selectedServiceId = serviceId;
         if (mBottomSheetDialog != null)
             mBottomSheetDialog.dismiss();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (FragmentInteractionListenerInterface) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + "must implement FragmentInteractionListenerInterface.");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_UPLOAD_TASK);
     }
 
 }

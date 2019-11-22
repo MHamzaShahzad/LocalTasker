@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.localtasker.admin.FragmentTaskCategoriesAdmin;
+import com.example.localtasker.communicate.FragmentContactUs;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
 import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
+import com.example.localtasker.models.UserProfileModel;
 import com.example.localtasker.user.FragmentAllTasksHome;
 import com.example.localtasker.user.FragmentCreateEditProfile;
 import com.example.localtasker.user.FragmentMyAllTasks;
@@ -19,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -34,6 +37,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.squareup.picasso.Picasso;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -41,12 +46,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class HomeDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentInteractionListenerInterface {
 
+    private static final String TAG = HomeDrawerActivity.class.getName();
     private Context context;
     private FirebaseUser firebaseUser;
+    private ValueEventListener userProfileValueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +85,25 @@ public class HomeDrawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentAllTasksHome()).commit();
+        loadUserProfileDataInNavigationHeader(navigationView.getHeaderView(0));
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (firebaseUser != null)
+            FirebaseMessaging.getInstance().subscribeToTopic(firebaseUser.getUid()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful())
+                        Log.d(TAG, "Topic subscribed!");
+                    else
+                        Log.e(TAG, "Can't subscribe to topic");
+                }
+            });
+        else
+            SignOut();
     }
 
     @Override
@@ -85,7 +112,10 @@ public class HomeDrawerActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (getSupportFragmentManager().getBackStackEntryCount() > 0)
+                super.onBackPressed();
+            else
+                alertDialogOnBackPress();
         }
     }
 
@@ -144,12 +174,9 @@ public class HomeDrawerActivity extends AppCompatActivity
 
             SignOut();
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_contact_us) {
 
-
-        } else if (id == R.id.nav_send) {
-
-
+            getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentContactUs()).addToBackStack(null).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -221,5 +248,69 @@ public class HomeDrawerActivity extends AppCompatActivity
     public void onFragmentInteraction(String title) {
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle(title);
+    }
+
+    private void alertDialogOnBackPress() {
+        new android.app.AlertDialog.Builder(this)
+                .setIcon(R.drawable.ic_launcher_background)
+                .setTitle("Exit App")
+                .setMessage("Are you sure you want to quit ?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+    private void loadUserProfileDataInNavigationHeader(View headerView) {
+        final ImageView headerImageUser = headerView.findViewById(R.id.userProfileImageView);
+        final TextView headerUserName = headerView.findViewById(R.id.userNameText);
+        final TextView headerUserEmail = headerView.findViewById(R.id.userEmailText);
+        userProfileValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists() && dataSnapshot.getValue() != null) {
+                    try {
+
+                        UserProfileModel userProfileModel = dataSnapshot.getValue(UserProfileModel.class);
+                        if (userProfileModel != null) {
+                            if (userProfileModel.getUserImageUrl() != null && !userProfileModel.getUserImageUrl().equals("null") && !userProfileModel.getUserImageUrl().equals(""))
+                                Picasso.get()
+                                        .load(userProfileModel.getUserImageUrl())
+                                        .placeholder(R.drawable.ic_launcher_background)
+                                        .error(R.drawable.ic_launcher_background)
+                                        .centerInside().fit()
+                                        .into(headerImageUser);
+
+                            headerUserName.setText(userProfileModel.getUserName());
+                            headerUserEmail.setText(userProfileModel.getUserMobileNumber());
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        MyFirebaseDatabase.USERS_REFERENCE.child(firebaseUser.getUid()).addValueEventListener(userProfileValueEventListener);
+    }
+    private void removeUserProfileEventListener(){
+        if (userProfileValueEventListener != null){
+            MyFirebaseDatabase.USERS_REFERENCE.child(firebaseUser.getUid()).removeEventListener(userProfileValueEventListener);
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        removeUserProfileEventListener();
+        super.onDestroy();
     }
 }

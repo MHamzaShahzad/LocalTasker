@@ -43,6 +43,8 @@ public class FragmentMapLocationForTask extends Fragment implements OnMapReadyCa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_LOCATION);
         context = container.getContext();
         /*if (mListener != null)
             mListener.onFragmentInteraction(Constant.TITLE_SELECT_LOCATION);*/
@@ -123,8 +125,8 @@ public class FragmentMapLocationForTask extends Fragment implements OnMapReadyCa
     @Override
     public void onResume() {
         super.onResume();
-        /*if (mListener != null)
-            mListener.onFragmentInteraction(Constant.TITLE_SELECT_LOCATION);*/
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_LOCATION);
     }
 
 }

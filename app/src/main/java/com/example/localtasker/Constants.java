@@ -44,4 +44,16 @@ public class Constants {
     public static final String USER_PROFILE_SELLER = "1";
     public static final String USER_PROFILE_BUYER_SELLER = "3";
 
+    public static final String TITLE_CONTACT_US = "Contact Us";
+    public static final String TITLE_HOME = "Home";
+    public static final String TITLE_PROFILE = "Profile";
+    public static final String TITLE_EDIT_TASK = "Edit Task";
+    public static final String TITLE_MAKE_OFFER = "Make Offer";
+    public static final String TITLE_LOCATION = "Location";
+    public static final String TITLE_MY_TASKS = "My Tasks";
+    public static final String TITLE_MY_BIDS = "My Bids";
+    public static final String TITLE_REVIEW_TASK = "Review Task";
+    public static final String TITLE_TASK_DESCRIPTION = "Task Description";
+    public static final String TITLE_UPLOAD_TASK = "Upload Task";
+    public static final String TITLE_USER_PROFILE_VIEW = "View Profile";
 }

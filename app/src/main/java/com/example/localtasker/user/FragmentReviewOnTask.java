@@ -24,6 +24,8 @@ import android.widget.Toast;
 import com.example.localtasker.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
+import com.example.localtasker.controllers.SendPushNotificationFirebase;
+import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
 import com.example.localtasker.models.TaskModel;
 import com.example.localtasker.models.UserProfileModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,9 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class FragmentReviewOnTask extends DialogFragment {
 
     private Context context;
@@ -48,6 +48,9 @@ public class FragmentReviewOnTask extends DialogFragment {
     private RatingBar ratingBarReviewTask;
     private Button btnSubmitReview;
 
+    private FragmentInteractionListenerInterface mListener;
+
+
     public FragmentReviewOnTask() {
         // Required empty public constructor
     }
@@ -55,6 +58,8 @@ public class FragmentReviewOnTask extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_REVIEW_TASK);
         context = getContext();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -138,6 +143,7 @@ public class FragmentReviewOnTask extends DialogFragment {
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(context, "Successfully!", Toast.LENGTH_LONG).show();
+                                                            SendPushNotificationFirebase.buildAndSendNotification(context, taskModel.getTaskUploadedBy(), "Task Reviewed!", "Your task has been reviewed by provider.");
                                                             FragmentReviewOnTask.this.dismiss();
                                                         } else
                                                             Toast.makeText(context, "Un-Successful!", Toast.LENGTH_LONG).show();
@@ -165,6 +171,29 @@ public class FragmentReviewOnTask extends DialogFragment {
 
             }
         });
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (FragmentInteractionListenerInterface) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + "must implement FragmentInteractionListenerInterface.");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_REVIEW_TASK);
     }
 
 }

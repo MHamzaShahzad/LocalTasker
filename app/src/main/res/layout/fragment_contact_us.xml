@@ -1,100 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
-    android:orientation="vertical"
-    android:padding="16dp"
+    android:background="@color/colorFragmentBackground"
+    android:clickable="true"
+    android:padding="10dp"
     tools:context=".communicate.FragmentContactUs">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="45dp"
+        android:layout_height="match_parent"
         android:fillViewport="true">
-    <TextView
-        android:id="@+id/contact_form_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="20dp"
-        android:text="Local Tasker"
-        android:textStyle="bold"
-        android:textColor="#ce3232"
-        android:textSize="40sp"
-        android:typeface="serif" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="At your service! For any query feel comfortable to contact."
-        android:textSize="18sp"
-        android:textColor="#A71515"
-        android:layout_margin="10dp"
-        android:layout_marginTop="20dp"
-        android:textAlignment="center"
-        />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name"
-        android:padding="10dp"
-        android:background="@drawable/stylebottomsheet"
-        android:inputType="textPersonName"
-        android:layout_marginTop="25dp"
-        android:textColor="#000000"
-        android:textColorHint="#ce3232"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:padding="10dp"
-        android:hint="Email"
-        android:background="@drawable/stylebottomsheet"
-        android:inputType="textEmailAddress"
-        android:textColor="#000000"
-        android:textColorHint="#ce3232"
-        />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:hint="Phone"
-        android:inputType="phone"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/stylebottomsheet"
-        android:textColor="#000000"
-        android:textColorHint="#ce3232"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stylebottomsheet">
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="15dp"
-        android:gravity="top"
-        android:hint="Your Message"
-        android:fitsSystemWindows="true"
-        android:breakStrategy="balanced"
-        android:inputType="textMultiLine"
-        android:singleLine="false"
-        android:padding="10dp"
-        android:background="@drawable/stylebottomsheet"
-        android:textColor="#000000"
-        android:textColorHint="#ce3232"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputFeedbackComplain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|top"
+                        android:hint="Describe your feedback and Complain here!"
+                        android:lines="3" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="#A71515"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="Submit"
-        android:textColor="#fff"
-        android:layout_marginTop="5dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnSubmitFeedBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/fui_idp_button_background_anonymous"
+                    android:text="Send"
+                    android:textAllCaps="false"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
     </ScrollView>
 
-</LinearLayout>
+</FrameLayout>

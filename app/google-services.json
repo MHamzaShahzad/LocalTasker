@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "781608507767-0fqkhipsi85qnqbr38fssoma333vj0d6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.localtasker",
+            "certificate_hash": "dd7363d43fe16761f44e90ad080b5334f9ef0c70"
+          }
+        },
+        {
           "client_id": "781608507767-dcj3hc423vmckrs7up6an3ea2te9ch99.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

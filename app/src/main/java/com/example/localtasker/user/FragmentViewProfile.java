@@ -1,6 +1,7 @@
 package com.example.localtasker.user;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.example.localtasker.CommonFunctionsClass;
 import com.example.localtasker.Constants;
 import com.example.localtasker.R;
+import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
 import com.example.localtasker.models.UserProfileModel;
 import com.squareup.picasso.Picasso;
 
@@ -33,6 +35,8 @@ public class FragmentViewProfile extends Fragment {
     private RatingBar user_profile_rating;
     private TextView user_profile_name, user_rating_counts, user_email, user_mobile, user_address, user_type, user_about;
 
+    private FragmentInteractionListenerInterface mListener;
+
     public FragmentViewProfile() {
         // Required empty public constructor
     }
@@ -41,6 +45,8 @@ public class FragmentViewProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_USER_PROFILE_VIEW);
         context = container.getContext();
         // Inflate the layout for this fragment
         if (view == null) {
@@ -94,6 +100,28 @@ public class FragmentViewProfile extends Fragment {
             }
 
         }
+    }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (FragmentInteractionListenerInterface) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + "must implement FragmentInteractionListenerInterface.");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_USER_PROFILE_VIEW);
     }
 
 }

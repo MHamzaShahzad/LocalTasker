@@ -1,5 +1,9 @@
 package com.example.localtasker;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CommonFunctionsClass {
 
     public static String getStringStatus(String status) {
@@ -27,7 +31,7 @@ public class CommonFunctionsClass {
         return taskStatus;
     }
 
-    public static String getUserType(String val){
+    public static String getUserType(String val) {
         String userType = "";
         if (val != null)
             switch (val) {
@@ -44,6 +48,21 @@ public class CommonFunctionsClass {
                     userType = "";
             }
         return userType;
+    }
+
+    public static boolean isOutdated(String dueDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+        Date strDate = null;
+        try {
+            strDate = sdf.parse(dueDate);
+            if (strDate != null)
+                if (System.currentTimeMillis() > strDate.getTime()) {
+                    return true;
+                }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

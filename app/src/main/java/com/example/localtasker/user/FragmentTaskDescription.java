@@ -1,5 +1,6 @@
 package com.example.localtasker.user;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,6 +24,8 @@ import com.example.localtasker.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.adapter.AdapterAllOffers;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
+import com.example.localtasker.controllers.SendPushNotificationFirebase;
+import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
 import com.example.localtasker.models.TaskModel;
 import com.example.localtasker.models.TaskBid;
 import com.example.localtasker.models.UserProfileModel;
@@ -64,6 +67,8 @@ public class FragmentTaskDescription extends Fragment {
     private String taskId, userProfileId;
 
     private FirebaseUser firebaseUser;
+    private FragmentInteractionListenerInterface mListener;
+
 
     public FragmentTaskDescription() {
         // Required empty public constructor
@@ -74,7 +79,8 @@ public class FragmentTaskDescription extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_TASK_DESCRIPTION);
         context = container.getContext();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -169,24 +175,6 @@ public class FragmentTaskDescription extends Fragment {
 
                             setViewOnMap(taskModel.getTaskLocation(), getTaskLatitude(taskModel.getTaskLatLng()), getTaskLongitude(taskModel.getTaskLatLng()));
 
-                            /*if (isOutdated(taskModel.getTaskDueDate()) && taskModel.getTaskStatus().equals(Constants.TASKS_STATUS_OPEN)){
-                                MyFirebaseDatabase.TASKS_REFERENCE.child(taskModel.getTaskId()).child(TaskModel.STRING_TASK_STATUS_REF).setValue(Constants.TASKS_STATUS_CANCELLED).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(context, "Task Cancelled due to Out of date!", Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                            }
-
-                            if (isOutdated(taskModel.getTaskDueDate()) && taskModel.getTaskStatus().equals(Constants.TASKS_STATUS_ASSIGNED)){
-                                MyFirebaseDatabase.TASKS_REFERENCE.child(taskModel.getTaskId()).child(TaskModel.STRING_TASK_STATUS_REF).setValue(Constants.TASKS_STATUS_UNCOMPLETED).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(context, "Task Incomplete due to Out of date!", Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                            }*/
-
                             if (taskModel.getTaskUploadedBy().equals(firebaseUser.getUid())) {
                                 switch (taskModel.getTaskStatus()) {
                                     case Constants.TASKS_STATUS_OPEN:
@@ -259,9 +247,10 @@ public class FragmentTaskDescription extends Fragment {
                 MyFirebaseDatabase.TASKS_REFERENCE.child(taskModel.getTaskId()).child(TaskModel.STRING_TASK_STATUS_REF).setValue(Constants.TASKS_STATUS_COMPLETED).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
+                        if (task.isSuccessful()) {
                             Toast.makeText(context, "Successfully!", Toast.LENGTH_LONG).show();
-                        else
+                            SendPushNotificationFirebase.buildAndSendNotification(context, taskModel.getTaskUploadedBy(), "Task Completed!", "Your task has been declared completed.");
+                        }else
                             Toast.makeText(context, "Un-Successful!", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -274,9 +263,10 @@ public class FragmentTaskDescription extends Fragment {
                 MyFirebaseDatabase.TASKS_REFERENCE.child(taskModel.getTaskId()).child(TaskModel.STRING_TASK_STATUS_REF).setValue(Constants.TASKS_STATUS_UNCOMPLETED).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
+                        if (task.isSuccessful()) {
                             Toast.makeText(context, "Successful!", Toast.LENGTH_LONG).show();
-                        else
+                            SendPushNotificationFirebase.buildAndSendNotification(context, taskModel.getTaskUploadedBy(), "Task incomplete!", "Your task has been declared incomplete by provider.");
+                        } else
                             Toast.makeText(context, "Un-Successful!", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -399,61 +389,51 @@ public class FragmentTaskDescription extends Fragment {
     private void setBtnMakeOffer(final TaskModel taskModel) {
 
         btnMakeOffer.setVisibility(View.VISIBLE);
-        MyFirebaseDatabase.TASKS_REFERENCE.child(taskModel.getTaskId()).child(Constants.STRING_OFFERS_REF).child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        if (taskModel.getTaskStatus().equals(Constants.TASKS_STATUS_OPEN)) {
+            MyFirebaseDatabase.TASKS_REFERENCE.child(taskModel.getTaskId()).child(Constants.STRING_OFFERS_REF).child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.exists() && dataSnapshot.getValue() != null)
-                    btnMakeOffer.setEnabled(false);
-                else {
-                    btnMakeOffer.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                    if (dataSnapshot.exists() && dataSnapshot.getValue() != null)
+                        btnMakeOffer.setEnabled(false);
+                    else {
+                        btnMakeOffer.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                MyFirebaseDatabase.USERS_REFERENCE.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            MyFirebaseDatabase.USERS_REFERENCE.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.exists() && dataSnapshot.getValue() != null) {
+                                            FragmentMakeOffer fragmentMakeOffer = new FragmentMakeOffer();
+                                            Bundle bundle = new Bundle();
+                                            bundle.putSerializable(Constants.STRING_TASK_OBJECT, taskModel);
+                                            fragmentMakeOffer.setArguments(bundle);
+                                            fragmentMakeOffer.show(((FragmentActivity) context).getSupportFragmentManager(), "Make Offer");
+                                        } else {
+                                            ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentCreateEditProfile()).addToBackStack(null).commit();
+                                        }
 
-                                    if (dataSnapshot.exists() && dataSnapshot.getValue() != null) {
-                                        MyFirebaseDatabase.TASKS_REFERENCE.child(taskModel.getTaskId()).child(Constants.STRING_OFFERS_REF).child(firebaseUser.getUid()).setValue(buildBidInstance("")).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful())
-                                                    Toast.makeText(context, "Offer Sent Successfully!", Toast.LENGTH_LONG).show();
-                                                else
-                                                    Toast.makeText(context, "Offer Could't be sent!", Toast.LENGTH_LONG).show();
-                                            }
-                                        });
-                                    } else {
-                                        ((FragmentActivity) context).getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentCreateEditProfile()).addToBackStack(null).commit();
                                     }
 
-                                }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    }
+                                });
+                            }
+                        });
+                    }
 
-                                }
-                            });
-
-                        }
-                    });
                 }
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private TaskBid buildBidInstance(String message) {
-        return new TaskBid(
-                firebaseUser.getUid(),
-                message
-        );
+                }
+            });
+        }else
+            btnMakeOffer.setEnabled(false);
     }
 
     private void editDeleteTask(final TaskModel taskModel) {
@@ -502,10 +482,6 @@ public class FragmentTaskDescription extends Fragment {
 
     }
 
-    private boolean isOutdated(String dueDate) {
-        return true;
-    }
-
     private void removeTaskEventListener() {
         if (taskValueEventListener != null && taskId != null)
             MyFirebaseDatabase.TASKS_REFERENCE.child(taskId).removeEventListener(taskValueEventListener);
@@ -523,6 +499,29 @@ public class FragmentTaskDescription extends Fragment {
         super.onDestroy();
         removeTaskEventListener();
         removeBidsEventListener();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (FragmentInteractionListenerInterface) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + "must implement FragmentInteractionListenerInterface.");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_TASK_DESCRIPTION);
     }
 
 }

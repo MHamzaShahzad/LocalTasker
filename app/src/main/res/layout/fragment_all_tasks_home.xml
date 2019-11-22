@@ -7,9 +7,16 @@
     android:clickable="true"
     tools:context=".user.FragmentAllTasksHome">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerAllTasks"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerAllTasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

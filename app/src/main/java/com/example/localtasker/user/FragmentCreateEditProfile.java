@@ -38,6 +38,7 @@ import com.example.localtasker.R;
 import com.example.localtasker.adapter.AdapterForServicesList;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
 import com.example.localtasker.controllers.MyFirebaseStorage;
+import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
 import com.example.localtasker.interfaces.OnServiceSelectedI;
 import com.example.localtasker.models.TaskCat;
 import com.example.localtasker.models.UserProfileModel;
@@ -101,6 +102,7 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
     private FirebaseUser firebaseUser;
 
     private static final int PLACE_AUTOCOMPLETE_REQUEST_CODE = 108;
+    private FragmentInteractionListenerInterface mListener;
 
     public FragmentCreateEditProfile() {
         // Required empty public constructor
@@ -110,6 +112,8 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_PROFILE);
         context = container.getContext();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         // Inflate the layout for this fragment
@@ -224,6 +228,7 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
 
             }
         });
+        user_mobile.setText(firebaseUser.getPhoneNumber());
     }
 
     private void initSheetBehaviour() {
@@ -389,7 +394,7 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
     }
 
     private void uploadImageAndData() {
-        MyFirebaseStorage.USER_PROFILE_PICS.child(imageUri.getLastPathSegment() + ".jpg").putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        MyFirebaseStorage.USER_PROFILE_PICS.child(firebaseUser.getUid() + ".jpg").putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -492,6 +497,30 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
         selectedServiceId = serviceId;
         if (mBottomSheetDialog != null)
             mBottomSheetDialog.dismiss();
+    }
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (FragmentInteractionListenerInterface) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + "must implement FragmentInteractionListenerInterface.");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_PROFILE);
     }
 
 }

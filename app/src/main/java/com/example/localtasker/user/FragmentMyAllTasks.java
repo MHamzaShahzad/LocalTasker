@@ -1,5 +1,6 @@
 package com.example.localtasker.user;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import com.example.localtasker.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.adapter.AdapterMyTasks;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
+import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
 import com.example.localtasker.models.TaskModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,6 +49,8 @@ public class FragmentMyAllTasks extends Fragment {
     private ValueEventListener tasksValueEventListener;
 
     private FirebaseUser firebaseUser;
+    private FragmentInteractionListenerInterface mListener;
+
 
     public FragmentMyAllTasks() {
         // Required empty public constructor
@@ -57,6 +61,8 @@ public class FragmentMyAllTasks extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_MY_TASKS);
         context = container.getContext();
         adapterMyTasks = new AdapterMyTasks(context, taskModelListTemp);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -184,12 +190,29 @@ public class FragmentMyAllTasks extends Fragment {
     public void onResume() {
         super.onResume();
         setTabSelectedListener();
+        if (mListener != null)
+            mListener.onFragmentInteraction(Constants.TITLE_MY_TASKS);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         removeTasksValueEventListener();
+    }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (FragmentInteractionListenerInterface) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + "must implement FragmentInteractionListenerInterface.");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 
 }
