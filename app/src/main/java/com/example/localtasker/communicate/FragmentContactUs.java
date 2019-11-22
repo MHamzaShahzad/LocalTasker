@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -30,7 +31,7 @@ public class FragmentContactUs extends Fragment {
     private Context context;
     private View view;
 
-    private TextInputEditText inputFeedbackComplain;
+    private EditText inputFeedbackComplain;
     private Button btnSubmitFeedBack;
 
     private FragmentInteractionListenerInterface mListener;

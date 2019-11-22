@@ -252,7 +252,7 @@ public class HomeDrawerActivity extends AppCompatActivity
 
     private void alertDialogOnBackPress() {
         new android.app.AlertDialog.Builder(this)
-                .setIcon(R.drawable.ic_launcher_background)
+                .setIcon(R.drawable.ic_exit_to_app_black_24dp)
                 .setTitle("Exit App")
                 .setMessage("Are you sure you want to quit ?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -279,8 +279,8 @@ public class HomeDrawerActivity extends AppCompatActivity
                             if (userProfileModel.getUserImageUrl() != null && !userProfileModel.getUserImageUrl().equals("null") && !userProfileModel.getUserImageUrl().equals(""))
                                 Picasso.get()
                                         .load(userProfileModel.getUserImageUrl())
-                                        .placeholder(R.drawable.ic_launcher_background)
-                                        .error(R.drawable.ic_launcher_background)
+                                        .placeholder(R.drawable.image_avatar)
+                                        .error(R.drawable.image_avatar)
                                         .centerInside().fit()
                                         .into(headerImageUser);
 

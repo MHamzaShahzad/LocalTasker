@@ -46,7 +46,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/inputReviewMessage"
             android:layout_centerHorizontal="true"
-            android:text="Submit" />
+            android:text="Submit"
+            android:background="#A71515"
+            android:textColor="#FFFFFF"/>
 
     </RelativeLayout>
 

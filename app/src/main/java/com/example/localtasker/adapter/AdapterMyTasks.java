@@ -109,7 +109,7 @@ public class AdapterMyTasks extends RecyclerView.Adapter<AdapterMyTasks.Holder> 
                         final UserProfileModel userProfileModel = dataSnapshot.getValue(UserProfileModel.class);
                         if (userProfileModel != null) {
                             if (userProfileModel.getUserImageUrl() != null)
-                                Picasso.get().load(userProfileModel.getUserImageUrl()).placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_background).centerInside().fit().into(holder.userProfilePicture);
+                                Picasso.get().load(userProfileModel.getUserImageUrl()).placeholder(R.drawable.image_avatar).error(R.drawable.image_avatar).centerInside().fit().into(holder.userProfilePicture);
 
                             holder.userRating.setText(userProfileModel.getUserRating() + "(" + userProfileModel.getRatingCounts() + ")");
 

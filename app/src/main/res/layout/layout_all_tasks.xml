@@ -25,7 +25,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/taskimage" />
+                android:src="@drawable/image_avatar" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +44,8 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginStart="5dp"/>
+                    android:layout_marginStart="5dp"
+                    android:textColor="#A71515"/>
 
                 <TextView
                     android:id="@+id/taskLocation"

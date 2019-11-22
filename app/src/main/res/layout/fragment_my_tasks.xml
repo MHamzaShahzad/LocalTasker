@@ -17,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabBackground="@android:color/holo_red_dark"
-            app:tabIndicatorColor="#BFFFEB3B"
+            app:tabIndicatorColor="#BFFFFFFF"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="#BFFFEB3B"
-            app:tabTextColor="#BFFFEB3B" />
+            app:tabSelectedTextColor="#FFFFFF"
+            app:tabTextColor="#BFFFFFFF" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerMyTasks"

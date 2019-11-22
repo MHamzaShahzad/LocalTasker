@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/splashimagenew"
+    android:background="@color/colorFragmentBackground"
     android:clickable="true"
     android:padding="10dp"
     tools:context=".user.FragmentUploadTask">
@@ -25,11 +25,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginBottom="5dp"
                     android:text="Task Details"
                     android:textSize="22sp"
                     android:textStyle="bold"
+                    android:textColor="#A71515"
                     />
 
                 <androidx.cardview.widget.CardView
@@ -42,7 +43,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="5dp"
-                        android:background="#FFFFFF">
+                        android:background="@color/colorFragmentBackground"
+                        >
 
                         <EditText
                             android:id="@+id/taskTitle"
@@ -113,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="5dp"
-                        android:background="#FFFFFF"
+                        android:background="@color/colorFragmentBackground"
                         >
 
                         <TextView
@@ -127,7 +129,7 @@
                             android:id="@+id/selectDueDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="5dp"
+                            android:padding="7dp"
                             android:background="@drawable/stylebottomsheet"
 
                             />
@@ -154,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="5dp"
-                        android:background="#FFFFFF">
+                        android:background="@color/colorFragmentBackground">
 
                         <TextView
                             android:layout_width="match_parent"
@@ -169,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/stylebottomsheet"
                             android:inputType="number"
-                            android:padding="5dp" />
+                            android:padding="7dp" />
 
                     </LinearLayout>
 

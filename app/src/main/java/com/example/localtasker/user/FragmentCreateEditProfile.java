@@ -178,8 +178,8 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
                             if (userProfileModelPrevious.getUserImageUrl() != null && !userProfileModelPrevious.getUserImageUrl().equals("") && !userProfileModelPrevious.getUserImageUrl().equals("null"))
                                 Picasso.get()
                                         .load(userProfileModelPrevious.getUserImageUrl())
-                                        .placeholder(R.drawable.ic_launcher_background)
-                                        .error(R.drawable.ic_launcher_background)
+                                        .placeholder(R.drawable.image_avatar)
+                                        .error(R.drawable.image_avatar)
                                         .centerInside().fit()
                                         .into(user_profile_photo);
 

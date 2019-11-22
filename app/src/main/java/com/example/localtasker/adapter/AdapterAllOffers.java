@@ -147,8 +147,8 @@ public class AdapterAllOffers extends RecyclerView.Adapter<AdapterAllOffers.Hold
                             if (userProfileModel.getUserImageUrl() != null && !userProfileModel.getUserImageUrl().equals("null") && !userProfileModel.getUserImageUrl().equals(""))
                                 Picasso.get()
                                         .load(userProfileModel.getUserImageUrl())
-                                        .placeholder(R.drawable.ic_launcher_background)
-                                        .error(R.drawable.ic_launcher_background)
+                                        .placeholder(R.drawable.image_avatar)
+                                        .error(R.drawable.image_avatar)
                                         .centerInside().fit()
                                         .into(holder.profileImage);
 

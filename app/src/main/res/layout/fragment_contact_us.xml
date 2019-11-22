@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorFragmentBackground"
     android:clickable="true"
     android:padding="10dp"
@@ -16,6 +17,29 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Local Tasker"
+                android:textSize="40sp"
+                android:textColor="#A71515"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:typeface="serif"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:text="We all need people who will give us feedback.\nThat’s how we improve.\nSend your complain and queries."
+                android:layout_below="@+id/title"
+                android:textAlignment="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -23,30 +47,32 @@
                 android:layout_centerInParent="true"
                 android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/stylebottomsheet">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <EditText
                         android:id="@+id/inputFeedbackComplain"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start|top"
                         android:hint="Describe your feedback and Complain here!"
-                        android:lines="3" />
+                        android:lines="3"
+                        android:background="@drawable/stylebottomsheet"
+                        android:padding="10dp"
+                        />
 
-                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <Button
                     android:id="@+id/btnSubmitFeedBack"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/fui_idp_button_background_anonymous"
+                    android:layout_marginTop="15dp"
+                    android:background="#A71515"
                     android:text="Send"
                     android:textAllCaps="false"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="bottom"
+                    />
 
             </LinearLayout>
 
@@ -54,4 +80,4 @@
 
     </ScrollView>
 
-</FrameLayout>
+</RelativeLayout>

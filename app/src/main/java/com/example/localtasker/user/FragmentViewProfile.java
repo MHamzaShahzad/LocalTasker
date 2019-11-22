@@ -83,8 +83,8 @@ public class FragmentViewProfile extends Fragment {
                 if (userProfileModel.getUserImageUrl() != null && !userProfileModel.getUserImageUrl().equals("") && !userProfileModel.getUserImageUrl().equals("null"))
                     Picasso.get()
                             .load(userProfileModel.getUserImageUrl())
-                            .placeholder(R.drawable.ic_launcher_background)
-                            .error(R.drawable.ic_launcher_background)
+                            .placeholder(R.drawable.image_avatar)
+                            .error(R.drawable.image_avatar)
                             .centerInside().fit()
                             .into(user_profile_photo);
 

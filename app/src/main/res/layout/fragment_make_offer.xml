@@ -20,6 +20,7 @@
                 android:id="@+id/textWriteOfferMsg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Write your message that task provider can read to make the deal confirm!"/>
 
             <EditText
@@ -27,11 +28,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="7dp"
                 android:lines="5"
                 android:gravity="top|start"
                 android:layout_below="@id/textWriteOfferMsg"
                 android:hint="Enter Your Offer Message..."
+                android:background="@drawable/stylebottomsheet"
+                android:padding="5dp"
                 />
 
             <Button
@@ -41,7 +44,11 @@
                 android:layout_below="@id/inputOfferMessage"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="Make Offer"/>
+                android:text="Make Offer"
+                android:textAllCaps="false"
+                android:background="#A71515"
+                android:textColor="#FFFFFF"
+                android:padding="5dp"/>
 
         </RelativeLayout>
 

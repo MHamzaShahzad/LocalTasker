@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorFragmentBackground"
     tools:context=".user.FragmentTaskDescription">
 
     <ScrollView
@@ -21,16 +22,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
                 android:text="Task Title"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#A71515"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/colorFragmentBackground"
+                >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -44,7 +48,7 @@
                         android:id="@+id/profileImage"
                         android:layout_width="90dp"
                         android:layout_height="90dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/image_avatar" />
 
                     <TextView
                         android:id="@+id/textPostedBy"
@@ -82,7 +86,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/colorFragmentBackground">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -136,7 +141,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/colorFragmentBackground">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -180,7 +186,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/colorFragmentBackground">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -248,7 +255,9 @@
                         android:layout_centerHorizontal="true"
                         android:layout_margin="5dp"
                         android:text="Make Offer"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        android:background="#A71515"
+                        android:textColor="#FFFFFF"/>
 
                     <Button
                         android:id="@+id/btnReview"
@@ -258,7 +267,9 @@
                         android:layout_centerHorizontal="true"
                         android:layout_margin="5dp"
                         android:text="Review"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        android:background="#A71515"
+                        android:textColor="#FFFFFF"/>
 
                     <TextView
                         android:id="@+id/taskReview"
@@ -284,13 +295,20 @@
                             android:id="@+id/btnEditOffer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Edit Task" />
+                            android:text="Edit Task"
+                            android:background="#A71515"
+                            android:textColor="#FFFFFF"
+                            android:padding="5dp"/>
 
                         <Button
                             android:id="@+id/btnRemoveOffer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Remove Task" />
+                            android:text="Remove Task"
+                            android:background="#A71515"
+                            android:textColor="#FFFFFF"
+                            android:padding="5dp"
+                            android:layout_marginLeft="3dp"/>
 
                     </LinearLayout>
 
@@ -310,7 +328,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/placeBudget"
                             android:layout_centerHorizontal="true"
-                            android:text="Make Complete" />
+                            android:text="Make Complete"
+                            android:background="#A71515"
+                            android:textColor="#FFFFFF"
+                            android:padding="5dp"/>
 
                         <Button
                             android:id="@+id/btnIncompleteTask"
@@ -318,7 +339,11 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/placeBudget"
                             android:layout_centerHorizontal="true"
-                            android:text="Make Incomplete" />
+                            android:text="Make Incomplete"
+                            android:background="#A71515"
+                            android:textColor="#FFFFFF"
+                            android:padding="5dp"
+                            android:layout_marginLeft="3dp"/>
 
                     </LinearLayout>
 
@@ -329,23 +354,25 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/colorFragmentBackground">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:background="@drawable/stylebottomsheet"
                     android:orientation="horizontal"
-                    android:padding="10dp">
+                    >
 
                     <TextView
                         android:id="@+id/textOffers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="OFFERS"
+                        android:text="Offers"
                         android:textStyle="bold"
-
+                        android:textSize="20sp"
+                        android:textAllCaps="false"
+                        android:textColor="#A71515"
                         />
 
                     <androidx.recyclerview.widget.RecyclerView

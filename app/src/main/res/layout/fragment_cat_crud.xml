@@ -53,7 +53,9 @@
                 android:layout_height="wrap_content"
                 android:hint="Category Name"
                 android:inputType="text"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:padding="7dp"
+                android:background="@drawable/stylebottomsheet"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,7 +74,10 @@
                 android:text="Delete"
                 android:textAllCaps="false"
                 android:visibility="gone"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:background="#A71515"
+                android:textColor="#FFFFFF"
+                />
 
             <Button
                 android:id="@+id/btnCancel"
@@ -82,7 +87,10 @@
                 android:layout_weight="1"
                 android:text="Cancel"
                 android:textAllCaps="false"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:background="#A71515"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="3dp"/>
 
             <Button
                 android:id="@+id/btnSubmitCat"
@@ -92,7 +100,10 @@
                 android:layout_weight="1"
                 android:text="Submit"
                 android:textAllCaps="false"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:layout_marginLeft="3dp"
+                android:background="#A71515"
+                android:textColor="#FFFFFF"/>
 
         </LinearLayout>
 
