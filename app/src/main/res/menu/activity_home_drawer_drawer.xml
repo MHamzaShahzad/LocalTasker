@@ -6,39 +6,41 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_upload_task"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_upload"
             android:title="@string/menu_upload_task" />
         <item
             android:id="@+id/nav_my_tasks"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_my_task"
             android:title="@string/menu_my_tasks" />
 
         <item
             android:id="@+id/nav_my_bids"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_bid"
             android:title="@string/menu_my_bids" />
 
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_person"
             android:title="@string/menu_profile" />
+
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/menu_contact_us" />
+
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_logout" />
     </group>
 
-    <item android:title="Communicate">
+    <!--<item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_contact_us"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_contact_us" />
-        </menu>
-    </item>
 
+        </menu>
+    </item>-->
 </menu>

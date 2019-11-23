@@ -56,7 +56,8 @@ public class FragmentTaskDescription extends Fragment {
 
     private CircleImageView profileImage;
     private Button btnMakeOffer, btnEditOffer, btnRemoveOffer, btnCompleteTask, btnIncompleteTask, btnReview;
-    private TextView taskTitle, placePostedBy, placeUploadedDuration, placeTaskDescription, placeTaskLocation, viewOnMap, placeDueDate, placeBudget, taskReview;
+    private TextView taskTitle, placePostedBy, placeUploadedDuration, placeTaskDescription, placeTaskLocation,
+            viewOnMap, placeDueDate, placeBudget, taskReview;
     private RecyclerView recyclerTaskOffers;
     private LinearLayout layout_edit_remove, layout_complete_incomplete_task;
 

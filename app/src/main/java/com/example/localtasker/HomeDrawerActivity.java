@@ -135,7 +135,7 @@ public class HomeDrawerActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_category_admin) {
-            getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentTaskCategoriesAdmin()).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, new FragmentTaskCategoriesAdmin()).addToBackStack(null).commit();
             return true;
         }
 
@@ -148,7 +148,7 @@ public class HomeDrawerActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        clearFragmentBackStack();
+        //clearFragmentBackStack();
 
         if (id == R.id.nav_home) {
 
@@ -160,15 +160,15 @@ public class HomeDrawerActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_my_tasks) {
 
-            getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentMyAllTasks()).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, new FragmentMyAllTasks()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_my_bids) {
 
-            getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentMyBids()).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, new FragmentMyBids()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_profile) {
 
-            getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentCreateEditProfile()).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, new FragmentCreateEditProfile()).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_logout) {
 
@@ -176,7 +176,7 @@ public class HomeDrawerActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_contact_us) {
 
-            getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentContactUs()).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, new FragmentContactUs()).addToBackStack(null).commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -212,7 +212,7 @@ public class HomeDrawerActivity extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists() && dataSnapshot.getValue() != null) {
-                    getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentUploadTask()).addToBackStack(null).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, new FragmentUploadTask()).addToBackStack(null).commit();
                 } else
                     showDialogIfAccountHaveToBeCreated();
             }
@@ -232,7 +232,7 @@ public class HomeDrawerActivity extends AppCompatActivity
                 .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        getSupportFragmentManager().beginTransaction().add(R.id.home_fragment, new FragmentCreateEditProfile()).addToBackStack(null).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, new FragmentCreateEditProfile()).addToBackStack(null).commit();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -252,7 +252,7 @@ public class HomeDrawerActivity extends AppCompatActivity
 
     private void alertDialogOnBackPress() {
         new android.app.AlertDialog.Builder(this)
-                .setIcon(R.drawable.ic_exit_to_app_black_24dp)
+                .setIcon(R.drawable.ic_launcher_foreground)
                 .setTitle("Exit App")
                 .setMessage("Are you sure you want to quit ?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -264,6 +264,7 @@ public class HomeDrawerActivity extends AppCompatActivity
                 .setNegativeButton("No", null)
                 .show();
     }
+
     private void loadUserProfileDataInNavigationHeader(View headerView) {
         final ImageView headerImageUser = headerView.findViewById(R.id.userProfileImageView);
         final TextView headerUserName = headerView.findViewById(R.id.userNameText);

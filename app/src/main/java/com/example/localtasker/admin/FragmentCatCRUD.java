@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -62,7 +63,7 @@ public class FragmentCatCRUD extends DialogFragment implements View.OnClickListe
 
     private CircleImageView catImageView;
     private ImageButton btnUpdateCatImage;
-    private TextInputEditText catNameInput;
+    private EditText catNameInput;
     private Button btnSubmitCat, btnDelete, btnCancel;
 
     public static FragmentCatCRUD getInstance() {

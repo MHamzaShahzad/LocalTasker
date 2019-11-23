@@ -190,6 +190,7 @@ public class FragmentAllTasksHome extends Fragment implements SwipeRefreshLayout
     @Override
     public void onResume() {
         super.onResume();
+        Log.e(TAG, "onResume: " );
         if (mListener != null)
             mListener.onFragmentInteraction(Constants.TITLE_HOME);
     }
