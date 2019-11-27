@@ -68,6 +68,7 @@ public class HomeDrawerActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +149,7 @@ public class HomeDrawerActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        //clearFragmentBackStack();
+        clearFragmentBackStack();
 
         if (id == R.id.nav_home) {
 
@@ -195,6 +196,7 @@ public class HomeDrawerActivity extends AppCompatActivity
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(firebaseUser.getUid());
                     moveToMain();
                 }
             }

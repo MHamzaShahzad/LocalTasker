@@ -57,7 +57,7 @@ public class AdapterAllTasks extends RecyclerView.Adapter<AdapterAllTasks.Holder
     @Override
     public void onBindViewHolder(@NonNull AdapterAllTasks.Holder holder, int position) {
 
-        TaskModel taskModel = list.get(holder.getAdapterPosition());
+        final TaskModel taskModel = list.get(holder.getAdapterPosition());
 
         holder.taskLocation.setText(taskModel.getTaskLocation());
         holder.taskStatus.setText(CommonFunctionsClass.getStringStatus(taskModel.getTaskStatus()));
@@ -85,7 +85,8 @@ public class AdapterAllTasks extends RecyclerView.Adapter<AdapterAllTasks.Holder
                         if (snapshot.exists() && snapshot.getValue() != null)
                             try {
                                 TaskBid taskBid = snapshot.getValue(TaskBid.class);
-                                taskBidList.add(taskBid);
+                                if (taskBid != null)
+                                    taskBidList.add(taskBid);
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }

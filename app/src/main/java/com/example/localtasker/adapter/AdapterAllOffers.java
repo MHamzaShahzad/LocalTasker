@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.localtasker.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
+import com.example.localtasker.controllers.SendPushNotificationFirebase;
 import com.example.localtasker.models.TaskBid;
 import com.example.localtasker.models.TaskModel;
 import com.example.localtasker.models.UserProfileModel;
@@ -64,7 +65,7 @@ public class AdapterAllOffers extends RecyclerView.Adapter<AdapterAllOffers.Hold
         holder.btnAcceptOffer.setVisibility(View.INVISIBLE);
         holder.textOfferMessage.setVisibility(View.INVISIBLE);
 
-        TaskBid taskBid = list.get(holder.getAdapterPosition());
+        final TaskBid taskBid = list.get(holder.getAdapterPosition());
 
         if (taskModel.getTaskUploadedBy().equals(firebaseUser.getUid())) {
 
@@ -73,7 +74,8 @@ public class AdapterAllOffers extends RecyclerView.Adapter<AdapterAllOffers.Hold
                 holder.btnAcceptOffer.setVisibility(View.VISIBLE);
                 holder.textOfferMessage.setVisibility(View.VISIBLE);
                 holder.textOfferMessage.setText(taskBid.getBidMessage());
-                setBtnAcceptOffer(holder);
+
+                setBtnAcceptOffer(holder, taskBid);
 
             } else {
 
@@ -172,20 +174,24 @@ public class AdapterAllOffers extends RecyclerView.Adapter<AdapterAllOffers.Hold
         });
     }
 
-    private void setBtnAcceptOffer(final Holder holder) {
+    private void setBtnAcceptOffer(final Holder holder, final TaskBid taskBid) {
 
         holder.btnAcceptOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Map<String, Object> mapForUpdate = new HashMap<>();
-                mapForUpdate.put(TaskModel.STRING_TASK_ASSIGNED_TO_REF, list.get(holder.getAdapterPosition()).getBidBuyerId());
+                mapForUpdate.put(TaskModel.STRING_TASK_ASSIGNED_TO_REF, taskBid.getBidBuyerId());
                 mapForUpdate.put(TaskModel.STRING_TASK_STATUS_REF, Constants.TASKS_STATUS_ASSIGNED);
                 MyFirebaseDatabase.TASKS_REFERENCE.child(taskModel.getTaskId()).updateChildren(mapForUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
+                        if (task.isSuccessful()) {
                             Toast.makeText(context, "Offer accepted successfully!", Toast.LENGTH_LONG).show();
-                        else
+                            SendPushNotificationFirebase.buildAndSendNotification(context,
+                                    taskBid.getBidBuyerId(),
+                                    "Offer Accepted",
+                                    "Your, bid request has been accepted!");
+                        }else
                             Toast.makeText(context, "Offer can't be accepted!", Toast.LENGTH_LONG).show();
 
                     }

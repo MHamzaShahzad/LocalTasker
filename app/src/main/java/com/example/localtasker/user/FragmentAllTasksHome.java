@@ -40,7 +40,7 @@ public class FragmentAllTasksHome extends Fragment implements SwipeRefreshLayout
     private View view;
 
     private RecyclerView recyclerAllTasks;
-    private AdapterAllTasks adapterAllTasks;
+    private static AdapterAllTasks adapterAllTasks;
 
     private List<TaskModel> taskModelList;
     private ValueEventListener allTasksValueEventListener;
@@ -60,8 +60,8 @@ public class FragmentAllTasksHome extends Fragment implements SwipeRefreshLayout
                              Bundle savedInstanceState) {
         if (mListener != null)
             mListener.onFragmentInteraction(Constants.TITLE_HOME);
-        context = container.getContext();
         adapterAllTasks = new AdapterAllTasks(context, taskModelList);
+        context = container.getContext();
         // Inflate the layout for this fragment
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_all_tasks_home, container, false);
@@ -129,7 +129,8 @@ public class FragmentAllTasksHome extends Fragment implements SwipeRefreshLayout
                     }
                 }
                 Log.e(TAG, "onDataChange: " + taskModelList.size() );
-                adapterAllTasks.notifyDataSetChanged();
+                adapterAllTasks = new AdapterAllTasks(context, taskModelList);
+                recyclerAllTasks.setAdapter(adapterAllTasks);
                 stopRefreshing();
             }
 
@@ -145,7 +146,11 @@ public class FragmentAllTasksHome extends Fragment implements SwipeRefreshLayout
         MyFirebaseDatabase.TASKS_REFERENCE.child(taskModel.getTaskId()).child(TaskModel.STRING_TASK_STATUS_REF).setValue(Constants.TASKS_STATUS_CANCELLED).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                SendPushNotificationFirebase.buildAndSendNotification(context, taskModel.getTaskUploadedBy(), "Task Cancelled!", "Your task has been cancelled due to Outdated");
+                SendPushNotificationFirebase.buildAndSendNotification(context,
+                        taskModel.getTaskUploadedBy(),
+                        "Task Cancelled!",
+                        "Your task has been cancelled due to Outdated"
+                );
             }
         });
     }

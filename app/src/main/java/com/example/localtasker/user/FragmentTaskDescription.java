@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.icu.text.CaseMap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -176,8 +177,33 @@ public class FragmentTaskDescription extends Fragment {
 
                             setViewOnMap(taskModel.getTaskLocation(), getTaskLatitude(taskModel.getTaskLatLng()), getTaskLongitude(taskModel.getTaskLatLng()));
 
-                            if (taskModel.getTaskUploadedBy().equals(firebaseUser.getUid())) {
+                            switch (taskModel.getTaskStatus()){
+                                case Constants.TASKS_STATUS_OPEN:
+                                    if (!taskModel.getTaskUploadedBy().equals(firebaseUser.getUid()))
+                                        setBtnMakeOffer(taskModel);
+                                case Constants.TASKS_STATUS_CANCELLED:
+                                    if (taskModel.getTaskUploadedBy().equals(firebaseUser.getUid()))
+                                        editDeleteTask(taskModel);
+                                    break;
+                                case Constants.TASKS_STATUS_ASSIGNED:
+                                    if (taskModel.getTaskUploadedBy().equals(firebaseUser.getUid()))
+                                        completeInCompleteTask(taskModel);
+                                    break;
+                                case Constants.TASKS_STATUS_COMPLETED:
+                                case Constants.TASKS_STATUS_UNCOMPLETED:
+                                    if (taskModel.getTaskUploadedBy().equals(firebaseUser.getUid()))
+                                        reviewTaskBySeller(taskModel);
+                                    break;
+                                case Constants.TASKS_STATUS_REVIEWED:
+                                    taskReview.setVisibility(View.VISIBLE);
+                                    taskReview.setText(taskModel.getTaskReviewBySeller());
+                                    break;
+                            }
+
+                            /*if (taskModel.getTaskUploadedBy().equals(firebaseUser.getUid())) {
+
                                 switch (taskModel.getTaskStatus()) {
+
                                     case Constants.TASKS_STATUS_OPEN:
                                     case Constants.TASKS_STATUS_CANCELLED:
                                         editDeleteTask(taskModel);
@@ -193,10 +219,18 @@ public class FragmentTaskDescription extends Fragment {
                                         taskReview.setVisibility(View.VISIBLE);
                                         taskReview.setText(taskModel.getTaskReviewBySeller());
                                         break;
+
                                 }
 
-                            } else
-                                setBtnMakeOffer(taskModel);
+                            } else {
+                                if (taskModel.getTaskStatus().equals(Constants.TASKS_STATUS_OPEN))
+                                    setBtnMakeOffer(taskModel);
+                                if (taskModel.getTaskStatus().equals(Constants.TASKS_STATUS_REVIEWED)){
+                                    taskReview.setVisibility(View.VISIBLE);
+                                    taskReview.setText(taskModel.getTaskReviewBySeller());
+                                }
+
+                            }*/
 
                         }
 
@@ -250,8 +284,11 @@ public class FragmentTaskDescription extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(context, "Successfully!", Toast.LENGTH_LONG).show();
-                            SendPushNotificationFirebase.buildAndSendNotification(context, taskModel.getTaskUploadedBy(), "Task Completed!", "Your task has been declared completed.");
-                        }else
+                            SendPushNotificationFirebase.buildAndSendNotification(context,
+                                    taskModel.getTaskAssignedTo(), "Task Completed!",
+                                    "Your task has been declared completed."
+                            );
+                        } else
                             Toast.makeText(context, "Un-Successful!", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -266,7 +303,11 @@ public class FragmentTaskDescription extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(context, "Successful!", Toast.LENGTH_LONG).show();
-                            SendPushNotificationFirebase.buildAndSendNotification(context, taskModel.getTaskUploadedBy(), "Task incomplete!", "Your task has been declared incomplete by provider.");
+                            SendPushNotificationFirebase.buildAndSendNotification(context,
+                                    taskModel.getTaskAssignedTo(),
+                                    "Task incomplete!",
+                                    "Your task has been declared incomplete by provider."
+                            );
                         } else
                             Toast.makeText(context, "Un-Successful!", Toast.LENGTH_LONG).show();
                     }
@@ -433,7 +474,7 @@ public class FragmentTaskDescription extends Fragment {
 
                 }
             });
-        }else
+        } else
             btnMakeOffer.setEnabled(false);
     }
 

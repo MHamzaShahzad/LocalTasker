@@ -143,7 +143,10 @@ public class FragmentReviewOnTask extends DialogFragment {
                                                     public void onComplete(@NonNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(context, "Successfully!", Toast.LENGTH_LONG).show();
-                                                            SendPushNotificationFirebase.buildAndSendNotification(context, taskModel.getTaskUploadedBy(), "Task Reviewed!", "Your task has been reviewed by provider.");
+                                                            SendPushNotificationFirebase.buildAndSendNotification(context,
+                                                                    taskModel.getTaskAssignedTo(),
+                                                                    "Task Reviewed!",
+                                                                    "Your task has been reviewed by provider.");
                                                             FragmentReviewOnTask.this.dismiss();
                                                         } else
                                                             Toast.makeText(context, "Un-Successful!", Toast.LENGTH_LONG).show();

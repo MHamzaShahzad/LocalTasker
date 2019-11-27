@@ -184,7 +184,7 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
                                         .into(user_profile_photo);
 
                             user_profile_name.setText(userProfileModelPrevious.getUserName());
-                            user_mobile.setText(firebaseUser.getPhoneNumber());
+                            user_mobile.setText((firebaseUser.getPhoneNumber() != null) ? firebaseUser.getPhoneNumber().replace("+92", "") : "");
                             user_email.setText(userProfileModelPrevious.getUserEmailAddress());
                             user_address.setText(userProfileModelPrevious.getUserAddress());
                             user_about.setText(userProfileModelPrevious.getAbout());
@@ -195,15 +195,15 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
                             MyFirebaseDatabase.TASKS_CAT.child(userProfileModelPrevious.getUserServiceCatId()).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.exists() && dataSnapshot.getValue() != null){
+                                    if (dataSnapshot.exists() && dataSnapshot.getValue() != null) {
                                         try {
 
                                             TaskCat cat = dataSnapshot.getValue(TaskCat.class);
-                                            if (cat != null){
+                                            if (cat != null) {
                                                 FragmentCreateEditProfile.this.onServiceSelected(cat.getCategoryId(), cat.getCategoryName());
                                             }
 
-                                        }catch (Exception e){
+                                        } catch (Exception e) {
                                             e.printStackTrace();
                                         }
                                     }
@@ -228,7 +228,7 @@ public class FragmentCreateEditProfile extends Fragment implements View.OnClickL
 
             }
         });
-        user_mobile.setText(firebaseUser.getPhoneNumber());
+        user_mobile.setText((firebaseUser.getPhoneNumber() != null) ? firebaseUser.getPhoneNumber().replace("+92", "") : "");
     }
 
     private void initSheetBehaviour() {
