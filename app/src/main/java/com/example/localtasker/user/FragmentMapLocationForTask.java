@@ -8,17 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/splashimagenew"
     android:padding="10dp"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"

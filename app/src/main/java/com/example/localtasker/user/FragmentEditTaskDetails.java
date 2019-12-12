@@ -25,7 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.adapter.AdapterForServicesList;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
@@ -54,7 +54,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 

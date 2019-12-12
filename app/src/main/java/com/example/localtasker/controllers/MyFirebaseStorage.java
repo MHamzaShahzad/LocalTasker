@@ -1,6 +1,6 @@
 package com.example.localtasker.controllers;
 
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.Constants;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 

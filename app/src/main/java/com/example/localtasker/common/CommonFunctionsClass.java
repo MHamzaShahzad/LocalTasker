@@ -1,8 +1,15 @@
-package com.example.localtasker;
+package com.example.localtasker.common;
+
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class CommonFunctionsClass {
 
@@ -63,6 +70,22 @@ public class CommonFunctionsClass {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static String getCityFromLatLng(Context context, double LATITUDE, double LONGITUDE) {
+        String cityName = null;
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                cityName = returnedAddress.getLocality();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("@ErrorInAAddress", "My Current location address Cannot get Address!");
+        }
+        return cityName;
     }
 
 }

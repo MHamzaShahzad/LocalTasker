@@ -5,13 +5,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -32,8 +29,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.localtasker.CommonFunctionsClass;
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.adapter.AdapterForServicesList;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
@@ -42,7 +38,6 @@ import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
 import com.example.localtasker.interfaces.OnServiceSelectedI;
 import com.example.localtasker.models.TaskCat;
 import com.example.localtasker.models.UserProfileModel;
-import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -63,8 +58,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 

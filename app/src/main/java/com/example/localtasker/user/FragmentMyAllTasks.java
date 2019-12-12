@@ -6,19 +6,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.adapter.AdapterMyTasks;
 import com.example.localtasker.controllers.MyFirebaseDatabase;

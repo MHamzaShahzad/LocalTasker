@@ -1,10 +1,12 @@
-package com.example.localtasker;
+package com.example.localtasker.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.localtasker.R;
 
 public class SplashActivity extends AppCompatActivity {
 

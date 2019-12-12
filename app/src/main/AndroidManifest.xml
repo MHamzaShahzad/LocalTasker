@@ -25,18 +25,18 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".HomeDrawerActivity"
+            android:name=".activities.HomeDrawerActivity"
             android:label="@string/title_activity_home_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SplashActivity">
+            android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activities.MainActivity" />
 
         <service
             android:name=".services.MyFirebaseMessagingService"

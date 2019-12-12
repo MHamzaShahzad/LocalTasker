@@ -10,18 +10,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
 import com.example.localtasker.controllers.SendPushNotificationFirebase;
@@ -30,7 +27,6 @@ import com.example.localtasker.models.TaskModel;
 import com.example.localtasker.models.UserProfileModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;

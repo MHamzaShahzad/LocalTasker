@@ -1,4 +1,4 @@
-package com.example.localtasker;
+package com.example.localtasker.common;
 
 public class Constants {
 
@@ -56,4 +56,9 @@ public class Constants {
     public static final String TITLE_TASK_DESCRIPTION = "Task Description";
     public static final String TITLE_UPLOAD_TASK = "Upload Task";
     public static final String TITLE_USER_PROFILE_VIEW = "View Profile";
+
+    public static final String STRING_TASK_BUDGET = "task_budget";
+    public static final String STRING_TASK_CITY = "task_city";
+    public static final String STRING_SHOW_ONLY_OPEN_TASK = "only_open_task";
+    public static final String STRING_LOCATION_LATLNG = "loc_lat_lng";
 }

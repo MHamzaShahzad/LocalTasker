@@ -1,10 +1,11 @@
-package com.example.localtasker;
+package com.example.localtasker.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.localtasker.R;
 import com.example.localtasker.admin.FragmentTaskCategoriesAdmin;
 import com.example.localtasker.communicate.FragmentContactUs;
 import com.example.localtasker.controllers.MyFirebaseDatabase;

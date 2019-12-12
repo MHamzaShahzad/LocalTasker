@@ -16,7 +16,7 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-import com.example.localtasker.MainActivity;
+import com.example.localtasker.activities.MainActivity;
 import com.example.localtasker.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

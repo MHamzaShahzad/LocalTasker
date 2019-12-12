@@ -25,7 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.adapter.AdapterForServicesList;
 import com.example.localtasker.controllers.MyFirebaseDatabase;

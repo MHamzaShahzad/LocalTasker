@@ -6,23 +6,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.localtasker.CommonFunctionsClass;
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.CommonFunctionsClass;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.controllers.MyFirebaseDatabase;
-import com.example.localtasker.controllers.SendPushNotificationFirebase;
 import com.example.localtasker.models.TaskModel;
 import com.example.localtasker.models.TaskBid;
 import com.example.localtasker.models.UserProfileModel;
 import com.example.localtasker.user.FragmentTaskDescription;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;

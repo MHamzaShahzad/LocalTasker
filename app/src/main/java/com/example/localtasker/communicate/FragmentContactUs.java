@@ -16,10 +16,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
-import com.google.android.material.textfield.TextInputEditText;
 
 
 /**

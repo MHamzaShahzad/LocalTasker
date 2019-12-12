@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.admin.FragmentCatCRUD;
 import com.example.localtasker.models.TaskCat;

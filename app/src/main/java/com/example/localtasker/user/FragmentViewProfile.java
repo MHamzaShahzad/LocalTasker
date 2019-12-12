@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.localtasker.CommonFunctionsClass;
-import com.example.localtasker.Constants;
+import com.example.localtasker.common.CommonFunctionsClass;
+import com.example.localtasker.common.Constants;
 import com.example.localtasker.R;
 import com.example.localtasker.interfaces.FragmentInteractionListenerInterface;
 import com.example.localtasker.models.UserProfileModel;
